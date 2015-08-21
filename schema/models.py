@@ -38,8 +38,7 @@ class Mapping(models.Model):
 
 class Template(models.Model):
     tname = models.CharField(max_length=50, default='')
-    # Owner to be constructed
-    #owner = models.ForeignKey(User)
+    owner = models.ForeignKey(Member)
     description = models.TextField(blank=True)
     sample = models.TextField(blank=True)
     # javascrip describe that template
@@ -54,8 +53,7 @@ class Template(models.Model):
 
 class Graph(models.Model):
     gname = models.CharField(max_length=50, default='')
-    # Owner to be constructed
-    #owner = models.ForeignKey(User)
+    owner = models.ForeignKey(Member)
     description = models.TextField(blank=True)
     # json file
     data_src = models.CharField(max_length=150, default='')
