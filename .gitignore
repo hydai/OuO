@@ -58,3 +58,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Secret
+secret_key.py

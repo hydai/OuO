@@ -2,6 +2,8 @@
 `jsonutils` is a tool kit for testing json property.
 """
 import json
+
+
 def jsonvalidator(jsonString):
     """
     `jsonutils` is a simple validator for testing the format of json string
@@ -13,12 +15,13 @@ def jsonvalidator(jsonString):
             Invalid
     """
     try:
-        datas = json.loads(jsonString)
-    except Exception as ex:
+        json.loads(jsonString)
+    except (ValueError, KeyError, TypeError) as ex:
         print '| JSON | ERROR | ' + str(ex)
         return False
 
     return True
+
 
 def jsoncolumns(jsonString):
     """

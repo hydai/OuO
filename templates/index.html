@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+
+<div class="login_box">
+  <div class="login_body">
+  <hr></hr>
+  {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}?next={{ request.path }}">登出</a>
+  {% else %}
+    <a href="{% url 'social:begin' 'facebook' %}?next={% url 'login' %}" class="btn btn-block btn-facebook">Facebook 登入</a>
+  {% endif %}
+  </div>
+</div>
+
+</body>
+</html>
