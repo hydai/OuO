@@ -54,6 +54,7 @@ class Template(models.Model):
 class Graph(models.Model):
     gname = models.CharField(max_length=50, default='')
     owner = models.ForeignKey(Member)
+    template = models.ForeignKey(Template)
     description = models.TextField(blank=True)
     # json file
     data_src = models.CharField(max_length=150, default='')
