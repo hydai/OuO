@@ -9,6 +9,7 @@ def save_userdata(backend, user, response, *args, **kwargs):
         except Member.DoesNotExist:
             profile = Member(user_id=user.id)
         profile.uuid = response.get('id')
+        profile.name = response.get('name')
         profile.save()
 
 

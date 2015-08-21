@@ -6,6 +6,7 @@ class Member(models.Model):
     user = models.OneToOneField(User)
 
     uuid = models.CharField('UID', max_length=100)
+    name = models.CharField('name', max_length=100)
 
     def __str__(self):
         return self.user.get_username()
