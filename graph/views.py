@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from schema.models import Template
 
-# Create your views here.
+
+def graph(request):
+    templates = Template.objects.all()
+    return render(request, 'graph.html', {'templates': templates})
