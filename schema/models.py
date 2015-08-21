@@ -8,9 +8,6 @@ class Member(models.Model):
     uuid = models.CharField('UID', max_length=100)
     name = models.CharField('name', max_length=100)
 
-    def __str__(self):
-        return self.user.get_username()
-
     def __unicode__(self):
         return self.user.get_username()
 
