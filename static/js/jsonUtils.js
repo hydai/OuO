@@ -6,3 +6,7 @@ function isJSONValid(jsonString) {
     }
     return true;
 }
+
+function getJSONColumn(jsonString) {
+    return Object.keys(JSON.parse(jsonString))
+}
