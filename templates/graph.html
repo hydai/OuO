@@ -1,36 +1,33 @@
-{% extends 'base.html' %}
-{% block title_block%}
+{% extends 'base.html' %} {% block title_block%}
 <title>Graph | OuO</title>
-{% endblock %}
-{% block body_block %}
+{% endblock %} {% block body_block %}
 <!-- Wrap the rest of the page in another container to center all the content. -->
 <div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="container">
-        <div class="row">
-            {% for template in templates %}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="{{template.thumbnail_src.url}}" alt="...">
-                    <div class="caption">
-                        <center>
-                            <h3>{{ template.tname }}</h3>
-                        </center>
-                        <p style="word-wrap:break-word;">{{ template.description }}</p>
-                        <center>
-                            <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
-                        </center>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <div class="row">
+      {% for template in templates %}
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="{{template.thumbnail_src.url}}" alt="...">
+          <div class="caption">
+            <center>
+              <h3>{{ template.tname }}</h3>
+            </center>
+            <p style="word-wrap:break-word;">{{ template.description }}</p>
+            <center>
+              <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+            </center>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 <!-- /.container -->
-<hr>
-{% endblock %}
+<hr> {% endblock %}
