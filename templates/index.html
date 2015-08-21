@@ -11,7 +11,7 @@
   {% if user.is_authenticated %}
     <a href="{% url 'logout' %}?next={{ request.path }}">登出</a>
   {% else %}
-    <a href="{% url 'social:begin' 'facebook' %}?next={% url 'login' %}" class="btn btn-block btn-facebook">Facebook 登入</a>
+    <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-block btn-facebook">Facebook 登入</a>
   {% endif %}
   </div>
 </div>
