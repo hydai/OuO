@@ -1,3 +1,5 @@
 from django.contrib import admin
+from schema.models import Field, Template
 
-# Register your models here.
+admin.site.register(Field)
+admin.site.register(Template)
