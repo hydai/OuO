@@ -39,8 +39,8 @@ class Template(models.Model):
     description = models.TextField(blank=True)
     sample = models.TextField(blank=True)
     # javascrip describe that template
-    js_src = models.CharField(max_length=150, default='')
-    thumbnail_src = models.CharField(max_length=150, default='')
+    js_src = models.FileField(upload_to='upload_js')
+    thumbnail_src = models.FileField(upload_to='upload_img')
     # Store the struct of the template
     fields = models.ManyToManyField(Field, blank=True, null=True)
 
@@ -54,7 +54,7 @@ class Graph(models.Model):
     template = models.ForeignKey(Template)
     description = models.TextField(blank=True)
     # json file
-    data_src = models.CharField(max_length=150, default='')
+    data_src = models.FileField(upload_to='upload_data')
     mappings = models.ManyToManyField(Mapping, blank=True, null=True)
 
     def __unicode__(self):

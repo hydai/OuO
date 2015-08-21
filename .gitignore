@@ -1,5 +1,6 @@
 # Django gen
 *.sqlite3
+media
 migrations
 # Byte-compiled / optimized / DLL files
 __pycache__/

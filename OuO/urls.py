@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import logout
+from django.conf import settings
+from django.conf.urls.static import static
 
 from schema.views import index, login
 
@@ -26,4 +28,4 @@ urlpatterns = [
     url(r'^$', index),
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, name='logout'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
