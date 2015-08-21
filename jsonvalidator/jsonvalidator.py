@@ -6,11 +6,10 @@ def jsonvalidator(jsonString):
     """
     Return the status of json validator
     """
-    isValid = True
     try:
         datas = json.loads(jsonString)
     except Exception as ex:
-        isValid = False
         print '| JSON | ERROR | ' + str(ex)
+        return False
 
-    return isValid
+    return True
