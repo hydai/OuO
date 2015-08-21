@@ -1,3 +1,4 @@
 from django.contrib import admin
+from schema.models import Member
 
-# Register your models here.
+admin.site.register(Member)
