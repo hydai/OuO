@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block title_block%}
+{% extends 'base.html' %}
+{% load bootstrap %}
+ {% block title_block%}
 <title>Graph | OuO</title>
 {% endblock %} {% block body_block %}
 <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -16,7 +18,7 @@ function getJSONColumn(jsonString) {
     try {
         return Object.keys(JSON.parse(jsonString)[0]);
     } catch (e) {
-        return []
+        return [];
     }
 }
 $(function(){
@@ -46,7 +48,8 @@ $(function(){
     <form class="form-horizontal" action="" method="post">
       {% csrf_token %}
 
-      {{ form }}
+      {{ form|bootstrap_horizontal:"col-lg-2" }}
+
 
       {% for field in fields %}
       <label for="{{ field.fname }}">{{ field.fname }}:</label>

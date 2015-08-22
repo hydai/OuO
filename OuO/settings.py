@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'schema',
     'graph',
     'jsonutils',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
