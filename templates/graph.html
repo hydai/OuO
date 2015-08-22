@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block title_block%}
-<title>Graph | OuO</title>
+<title>範本集 | OuO</title>
 {% endblock %} {% block body_block %}
 <!-- Wrap the rest of the page in another container to center all the content. -->
 <div class="fluid-container">
@@ -20,8 +20,8 @@
             </center>
             <p style="word-wrap:break-word;">{{ template.description }}</p>
             <center>
-              <p><a href="/graph/create/{{ template.id }}" class="btn btn-info" role="button">Create</a>
-              <a href="/graph/explore/{{ template.id }}" class="btn btn-warning" role="button">Explore</a></p>
+              <p><a href="/graph/create/{{ template.id }}" class="btn btn-info" role="button">建立</a>
+              <a href="/graph/explore/{{ template.id }}" class="btn btn-warning" role="button">探索</a></p>
             </center>
           </div>
         </div>

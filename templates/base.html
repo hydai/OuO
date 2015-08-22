@@ -171,10 +171,9 @@ body {
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/gallery">Gallery</a></li>
-                            <li><a href="/graph/explore">Explore</a></li>
-                            <li><a href="http://data.taipei/">Taipei Open Data</a></li>
+                            <li><a href="/gallery">範本集</a></li>
+                            <li><a href="/graph/explore">探索</a></li>
+                            <li><a href="http://data.taipei/">北市府資料開放平台</a></li>
                             <li>
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'logout' %}?next={{ request.path }}">登出</a> {% else %}
@@ -190,8 +189,8 @@ body {
     <!-- FOOTER -->
     <div class="fluid-container">
         <footer class="footer">
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2015 OuO, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+            <p class="pull-right"><a href="#">回到頁首</a></p>
+            <p>&copy; 2015 OuO, Org. &middot; <a href="#">隱私權條款</a></p>
         </footer>
     </div>
     {% endblock %}
