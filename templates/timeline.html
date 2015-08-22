@@ -1,0 +1,46 @@
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization',
+                               'version':'1','packages':['timeline']}]}"></script>
+<script type="text/javascript">
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+    var container = document.getElementById('googletimeline');
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn({ type: 'string', id: 'id' });
+    dataTable.addColumn({ type: 'string', id: 'EventName' });
+    dataTable.addColumn({ type: 'date', id: 'Start' });
+    dataTable.addColumn({ type: 'date', id: 'End' });
+    for (i = 0; i < data.length; i++) {
+        var b = [];
+        b.push("展覽時間");
+        b.push(data[i]['EventName'] + ' (' + data[i]['EventTypeID'] + ')');
+        d = data[i]['DurationStart'].split('-');
+        b.push(new Date(d[0], d[1], d[2]));
+        d = data[i]['DurationEnd'].split('-');
+        b.push(new Date(d[0], d[1], d[2]));
+        dataTable.addRow(b);
+    }
+
+    var rowHeight = 30;
+    var chartHeight = (dataTable.getNumberOfRows() + 1) * rowHeight;
+
+    var options = {
+        timeline: {
+            showRowLabels: false,
+            //colorByRowLabel: true,
+            barLabelStyle: {
+                fontName: 'Roboto Condensed',
+                fontSize: 14
+            }
+        },
+        colors: ['#0092C7', '#9FE0F6', '#F3E59A', '#F3B59B', '#F29C9C'],
+        avoidOverlappingGridLines: true,
+        height: chartHeight,
+        width: '100%'
+    };
+
+    chart.draw(dataTable, options);
+}
+</script>
+
+<div id="googletimeline" style="height: 100%;"></div>
