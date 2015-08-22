@@ -1,110 +1,74 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Animals | OuO</title>
-        <script type="text/javascript" charset="utf-8" src="https://code.jquery.com/jquery-2.1.4.min.js">
-        </script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript" charset="utf-8">
+$(function() {
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    var dataList = {
+        "Name": "名稱",
+        "Sex": "性別",
+        "Type": "動物種類",
+        "Build": "體型",
+        "Age": "年齡",
+        "Variety": "品種",
+        "Reason": "進所原因",
+        "AcceptNum": "收容編號",
+        "ChipNum": "晶片號碼",
+        "IsSterilization": "絕育否",
+        "HairType": "毛色",
+        "Note": "描述",
+        "Resettlement": "位置",
+        "Phone": "聯絡電話",
+        "Email": "聯絡email",
+        //"ChildreAnlong": "可否與其他孩童相處",
+        //"AnimalAnlong": "可否與其他動物相處",
+        //"Bodyweight": "體重",
+        "ImageName": "圖片"
+    };
+    var dataKeys = Object.keys(dataList);
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" charset="utf-8">
-            $(function() {
-                //var a = '[{"Name":"","Sex":"雌","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"民眾不擬續養","AcceptNum":"104082101","ChipNum":"900073000015261","IsSterilization":"未絕育","HairType":"咖啡","Note":"哈囉~喜歡我嗎?快來認養，帶我回家吧!","Resettlement":"臺北市動物之家 收容編號104082101","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/0a49a161-8c13-46e8-b3a8-39e3deda8649.jpg"},{"Name":"","Sex":"雄","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"動物救援","AcceptNum":"104082002","ChipNum":"","IsSterilization":"未絕育","HairType":"黑","Note":"疥癬 左後股骨骨折","Resettlement":"臺北市動物之家 收容編號104082002","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/d651720d-702c-4a76-9cd8-b2f83abf15c6.jpg"},{"Name":"咪露","Sex":"雌","Type":"犬","Build":"中","Age":"成年","Variety":"米克斯","Reason":"民眾不擬續養","AcceptNum":"104082001","ChipNum":"900073000029612","IsSterilization":"已絕育","HairType":"黑","Note":"哈囉~我是個性有些害羞膽小的咪露，親人的我已經絕育了唷!喜歡我的話，快來動物之家看看吧!","Resettlement":"臺北市動物之家 收容編號104082001","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/aca68e24-dd0c-4826-9eac-41f5fc793e52.jpg"},{"Name":"","Sex":"雌","Type":"貓","Build":"小","Age":"幼齡","Variety":"米克斯","Reason":"動物救援","AcceptNum":"104081901","ChipNum":"","IsSterilization":"未絕育","HairType":"三花","Note":"眼膿","Resettlement":"臺北市動物之家 收容編號104081901","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/ab9564ee-5150-4e7c-907d-f1064b5a326b.jpg"},{"Name":"","Sex":"雌","Type":"犬","Build":"小","Age":"幼齡","Variety":"米克斯","Reason":"動物救援","AcceptNum":"104081903","ChipNum":"","IsSterilization":"未絕育","HairType":"虎斑白","Note":"","Resettlement":"臺北市動物之家 收容編號104081903","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/1b59e341-6615-4a65-96a9-285b1f21310a.jpg"},{"Name":"","Sex":"雌","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"動物管制","AcceptNum":"104081804","ChipNum":"","IsSterilization":"未絕育","HairType":"黑","Note":"","Resettlement":"臺北市動物之家 收容編號104081804","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/6970ea1e-1fd6-4115-a929-e3e908d3e485.jpg"},{"Name":"","Sex":"雌","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"動物管制","AcceptNum":"104081406","ChipNum":"","IsSterilization":"未絕育","HairType":"虎斑","Note":"","Resettlement":"臺北市動物之家 收容編號104081406 ","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/6993c034-c3c0-4d2f-bc9b-9b55e50e1d78.jpg"},{"Name":"","Sex":"雌","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"動物管制","AcceptNum":"104081405","ChipNum":"","IsSterilization":"未絕育","HairType":"虎斑","Note":"","Resettlement":"臺北市動物之家 收容編號104081405","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/b3784833-6191-4670-b0a6-8189af3fe80f.jpg"}]';
-                //var b = JSON.parse(a);
-                var dataList = {
-                    "Name": "名稱",
-                    "Sex": "性別",
-                    "Type": "動物種類",
-                    "Build": "體型",
-                    "Age": "年齡",
-                    "Variety": "品種",
-                    "Reason": "進所原因",
-                    "AcceptNum": "收容編號",
-                    "ChipNum": "晶片號碼",
-                    "IsSterilization": "絕育否",
-                    "HairType": "毛色",
-                    "Note": "描述",
-                    "Resettlement": "位置",
-                    "Phone": "聯絡電話",
-                    "Email": "聯絡email",
-                    //"ChildreAnlong": "可否與其他孩童相處",
-                    //"AnimalAnlong": "可否與其他動物相處",
-                    //"Bodyweight": "體重",
-                    "ImageName": "圖片"
-                };
-                var dataKeys = Object.keys(dataList);
-                function genMapping() {
-                    var ret = {};
-                    for (i = 0; i < dataKeys.length; i++) {
-                        ret[dataKeys[i]] = [];
-                        ret[dataKeys[i]] = [dataKeys[i], dataList[dataKeys[i]]];
-                    }
-                    return ret;
-                }
-                function parseData(jsd) {
-                    var JSONData = jsd;
-                    var mapping = genMapping();
-                    for (ii = 0; ii < JSONData.length; ii++) {
-                        var data = JSONData[ii];
-                        var t1 = $("<div>", {class: "col-sm-6 col-md-6"});
-                        var t2 = $("<div>", {class: "thumbnail anicard"});
-                        var t3 = $("<div>", {class: "row"});
-                        var t4 = $("<div>", {class: "col-sm-3 col-md-3"});
-                        var t5 = $("<img id='piclink'>");
-                        t5.attr('src', data[mapping['ImageName'][0]]);
-                        t5.attr('width', '200px');
-                        t4.append(t5);
-                        t3.append(t4);
-                        var t6 = $("<div>", {class: "col-sm-9 col-md-9"});
-                        var t7 = $("<dl>", {class: "dl-horizontal"});
-                        for (i = 0; i < 15; i++) {
-                            if (data[mapping[dataKeys[i]][0]] != null
-                                    || data[mapping[dataKeys[i]][1]] != null) {
-                                var tmp = $("<dt>");
-                                tmp.append(mapping[dataKeys[i]][1]);
-                                t7.append(tmp);
-                                tmp = $("<dd>");
-                                tmp.append(data[mapping[dataKeys[i]][0]]);
-                                t7.append(tmp);
-                            }
-                        }
-                        t6.append(t7);
-                        t3.append(t6);
-                        t2.append(t3);
-                        t1.append(t2);
-                        $('#targetcard').append(t1);
-                    }
-                };
-                //parseData(b);
-                $('#QAQ').click(function() {
-                     var a = $('#OAO').val();
-                     var b = JSON.parse(a);
-                     parseData(b);
-                })
-            });
-        </script>
-        <style type="text/css" media="all">
-            .anicard {
-                box-shadow: 8px 8px 10px black;
+    function parseData(jsd) {
+        var JSONData = jsd;
+        for (ii = 0; ii < JSONData.length; ii++) {
+            var data = JSONData[ii];
+            var t1 = $("<div>", {class: "col-sm-6 col-md-6"});
+            var t2 = $("<div>", {class: "thumbnail anicard"});
+            var t3 = $("<div>", {class: "row"});
+            var t4 = $("<div>", {class: "col-sm-3 col-md-3"});
+            var t5 = $("<img id='piclink'>");
+            t5.attr('src', data['ImageName']);
+            t5.attr('width', '200px');
+            t4.append(t5);
+            t3.append(t4);
+            var t6 = $("<div>", {class: "col-sm-9 col-md-9"});
+            var t7 = $("<dl>", {class: "dl-horizontal"});
+            for (i = 0; i < 15; i++) {
+                //if (data[dataKeys[i]] != null) {
+                    var tmp = $("<dt>");
+                    tmp.append(dataList[dataKeys[i]]);
+                    t7.append(tmp);
+                    tmp = $("<dd>");
+                    tmp.append(data[dataKeys[i]]);
+                    t7.append(tmp);
+                //}
             }
+            t6.append(t7);
+            t3.append(t6);
+            t2.append(t3);
+            t1.append(t2);
+            $('#targetcard').append(t1);
+        }
+    };
+    parseData(data);
+});
+</script>
+<style type="text/css" media="all">
+.anicard {
+    box-shadow: 8px 8px 10px black;
+}
             dt {
-                 color: #42a5f5;
+                color: #42a5f5;
             }
-        </style>
-    </head>
-    <body>
-        <div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
-            <div class="container" id="autogen">
-                <div class="row" id="targetcard">
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+</style>
+
+<div id="autogen">
+    <div class="row" id="targetcard">
+    </div>
+</div>
