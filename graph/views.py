@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from schema.models import Template, Mapping, Member, Graph
 from forms import CreateForm
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def gallery(request):
@@ -26,6 +26,7 @@ def create(request, tid):
                 mapping = Mapping.objects.create(field=field, onto=onto)
                 graph.mappings.add(mapping)
                 graph.save()
+                return HttpResponseRedirect('/graph/result/%d' % graph.id)
 
     return render(request, 'create_graph.html', {'form': form, 'fields': fields})
 
