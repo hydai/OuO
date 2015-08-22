@@ -20,14 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from schema.views import index, login
-from graph.views import graph
+from graph.views import gallery
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
 
     url(r'^$', index),
-    url(r'^graph$', graph),
+    url(r'^gallery$', gallery),
+    url(r'^graph/', include('graph.urls', namespace='graph')),
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

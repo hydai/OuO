@@ -54,7 +54,7 @@ class Graph(models.Model):
     template = models.ForeignKey(Template)
     description = models.TextField(blank=True)
     # json file
-    data_src = models.FileField(upload_to='upload_data')
+    data_src = models.TextField()
     mappings = models.ManyToManyField(Mapping, blank=True, null=True)
 
     def __unicode__(self):

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block title_block%}
+<title>Graph | OuO</title>
+{% endblock %} {% block body_block %}
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="container">
+    <form class="form-horizontal" action="" method="post">
+      {% csrf_token %}
+
+      {{ form }}
+
+      {% for field in fields %}
+      <label for="{{ field.fname }}">{{ field.fname }}:</label>
+      <select id="{{ field.fname }}" name="{{ field.fname }}">
+        <option value="">---------</option>
+      </select>
+      {% endfor %}
+      <button type="submit" name="userlevel_form" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+<!-- /.container -->
+<hr> {% endblock %}
