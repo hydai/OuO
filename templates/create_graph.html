@@ -38,7 +38,7 @@ $(function(){
   })
 })
 </script>
-<div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
+<div class="fluid-container">
   <br>
   <br>
   <br>
@@ -52,9 +52,11 @@ $(function(){
 
 
       {% for field in fields %}
-      <label for="{{ field.fname }}">{{ field.fname }}:</label>
-      <select id="{{ field.fname }}" name="{{ field.fname }}">
-      </select>
+      <div class="form-group col-lg-3" style="margin:20px">
+        <label for="{{ field.fname }}">{{ field.fname }}:</label>
+        <select class="form-control" id="{{ field.fname }}" name="{{ field.fname }}">
+        </select>
+      </div>
       {% endfor %}
       <button type="submit" name="userlevel_form" class="btn btn-primary">Submit</button>
     </form>
