@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
- {% block title_block%}
+{% block title_block%}
 <title>Graph | OuO</title>
 {% endblock %} {% block body_block %}
 <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -52,7 +52,7 @@ $(function(){
 
 
       {% for field in fields %}
-      <div class="form-group col-lg-3" style="margin:20px">
+      <div class="form-group col-lg-3" style="padding:30px">
         <label for="{{ field.fname }}">{{ field.fname }}:</label>
         <select class="form-control" id="{{ field.fname }}" name="{{ field.fname }}">
         </select>
