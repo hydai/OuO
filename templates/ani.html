@@ -15,199 +15,131 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" charset="utf-8">
-            $.(function() {
-                var Entries = function(entry) {
-                    this.picLink = entry.picLink;
-                    this.name = entry.name;
-                    this.short = entry.short;
-                    this.long = entry.long;
+            $(function() {
+                var a = '[{"Name":"","Sex":"雌","Type":"犬","Build":"幼","Age":"幼齡","Variety":"米克斯","Reason":"民眾不擬續養","AcceptNum":"104082101","ChipNum":"900073000015261","IsSterilization":"未絕育","HairType":"咖啡","Note":"哈囉~喜歡我嗎?快來認養，帶我回家吧!","Resettlement":"臺北市動物之家 收容編號104082101","Phone":"02-87913062","Email":"tcapoa8@mail.taipei.gov.tw","ChildreAnlong":"","AnimalAnlong":"","Bodyweight":"","ImageName":"http://163.29.39.183/uploads/images/medium/0a49a161-8c13-46e8-b3a8-39e3deda8649.jpg"}]';
+                var b = JSON.parse(a);
+                var dataList = {
+                    "Name": "名稱",
+                    "Sex": "性別",
+                    "Type": "動物種類",
+                    "Build": "體型",
+                    "Age": "年齡",
+                    "Variety": "品種",
+                    "Reason": "進所原因",
+                    "AcceptNum": "收容編號",
+                    "ChipNum": "晶片號碼",
+                    "IsSterilization": "絕育否",
+                    "HairType": "毛色",
+                    "Note": "描述",
+                    "Resettlement": "位置",
+                    "Phone": "聯絡電話",
+                    "Email": "聯絡email",
+                    //"ChildreAnlong": "可否與其他孩童相處",
+                    //"AnimalAnlong": "可否與其他動物相處",
+                    //"Bodyweight": "體重",
+                    "ImageName": "圖片"
                 };
+                var dataKeys = Object.keys(dataList);
+                function genMapping() {
+                    var ret = {};
+                    for (i = 0; i < dataKeys.length; i++) {
+                        ret[dataKeys[i]] = [];
+                        ret[dataKeys[i]] = [dataKeys[i], dataList[dataKeys[i]]];
+                    }
+                    return ret;
+                }
+                function parseData(jsd) {
+                    var JSONData = jsd;
+                    var mapping = genMapping();
+                    for (ii = 0; ii < JSONData.length; ii++) {
+                        var data = JSONData[ii];
+                        var t1 = $("<div>", {class: "col-sm-6 col-md-6"});
+                        var t2 = $("<div>", {class: "thumbnail anicard"});
+                        var t3 = $("<div>", {class: "row"});
+                        var t4 = $("<div>", {class: "col-sm-3 col-md-3"});
+                        var t5 = $("<img id='piclink'>");
+                        t5.attr('src', data[mapping['ImageName'][0]]);
+                        t5.attr('width', '200px');
+                        t4.append(t5);
+                        t3.append(t4);
+                        var t6 = $("<div>", {class: "col-sm-9 col-md-9"});
+                        var t7 = $("<dl>", {class: "dl-horizontal"});
+                        for (i = 0; i < 15; i++) {
+                            if (data[mapping[dataKeys[i]][0]] != null
+                                    || data[mapping[dataKeys[i]][1]] != null) {
+                                var tmp = $("<dt>");
+                                tmp.append(mapping[dataKeys[i]][1]);
+                                t7.append(tmp);
+                                tmp = $("<dd>");
+                                tmp.append(data[mapping[dataKeys[i]][0]]);
+                                t7.append(tmp);
+                            }
+                        }
+                        t6.append(t7);
+                        t3.append(t6);
+                        t2.append(t3);
+                        t1.append(t2);
+                        $('#targetcard').append(t1);
+                    }
+                };
+                parseData(b);
             });
         </script>
         <style type="text/css" media="all">
             .anicard {
                 box-shadow: 8px 8px 10px black;
             }
+            dt {
+                 color: #42a5f5;
+            }
         </style>
     </head>
     <body>
-<div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
-        <div class="container" id="autogen">
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-                    <div class="thumbnail anicard">
-                        <div class="row">
-                            <div class="col-sm-2 col-md-2">
-                                <img src="http://163.29.39.183/uploads/images/medium/15067337-89f2-4232-99ed-9007c26f7a64.jpg" alt="..." width="200px" id="picLink">
-                            </div>
-                            <div class="col-sm-4 col-md-4" style="border-right: 1px solid #ccc;">
-                                <dl class="dl-horizontal">
-                                    <dt>名字：</dt>
-                                    <dd>可魯</dd>
-                                    <dt>性別：</dt>
-                                    <dd>雄</dd>
-                                    <dt>品種：</dt>
-                                    <dd>米克斯</dd>
-                                    <dt>體型：</dt>
-                                    <dd>大</dd>
-                                    <dt>年紀：</dt>
-                                    <dd>老年</dd>
-                                    <dt>節育：</dt>
-                                    <dd>是</dd>
-                                    <dt>毛色：</dt>
-                                    <dd>黑</dd>
-                                </dl>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
-                                <dl class="dl-horizontal">
-                                    <dt>理由：</dt>
-                                    <dd>民眾不擬馴養</dd>
-                                    <dt>備註：</dt>
-                                    <dd>白內障  耳疥蟲  耳炎
-                                    我是Cash
-                                    我的年紀大了
-                                    身體機能都在退化
-                                    耳朵已經聽不太到
-                                    視力也有很大的影響
-                                    可是我很乖很溫馴
-                                    不會亂叫不會吵鬧
-                                    希望你們可以給我一個機會
-                                    讓我能再次擁有家的溫暖及安全感</dd>
-                                </dl>
+        <div class="fluid-container" style="background: url(https://s3-ap-northeast-1.amazonaws.com/hackntu/picture/bg-gray.png) repeat; background-size: contain;">
+            <div class="container" id="autogen">
+                <div class="row" id="targetcard">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="thumbnail anicard">
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3" style="border-right: 1px solid #ccc;">
+                                    <img src="http://163.29.39.183/uploads/images/medium/15067337-89f2-4232-99ed-9007c26f7a64.jpg" alt="..." width="200px" id="picLink">
+                                </div>
+                                <div class="col-sm-9 col-md-9">
+                                    <dl class="dl-horizontal">
+                                        <dt>名字：</dt>
+                                        <dd>可魯</dd>
+                                        <dt>性別：</dt>
+                                        <dd>雄</dd>
+                                        <dt>品種：</dt>
+                                        <dd>米克斯</dd>
+                                        <dt>體型：</dt>
+                                        <dd>大</dd>
+                                        <dt>年紀：</dt>
+                                        <dd>老年</dd>
+                                        <dt>節育：</dt>
+                                        <dd>是</dd>
+                                        <dt>毛色：</dt>
+                                        <dd>黑</dd>
+                                        <dt>理由：</dt>
+                                        <dd>民眾不擬馴養</dd>
+                                        <dt>備註：</dt>
+                                        <dd>白內障  耳疥蟲  耳炎
+                                        我是Cash
+                                        我的年紀大了
+                                        身體機能都在退化
+                                        耳朵已經聽不太到
+                                        視力也有很大的影響
+                                        可是我很乖很溫馴
+                                        不會亂叫不會吵鬧
+                                        希望你們可以給我一個機會
+                                        讓我能再次擁有家的溫暖及安全感</dd>
+                                    </dl>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12">
-                    <div class="thumbnail anicard">
-                        <div class="row">
-                            <div class="col-sm-2 col-md-2">
-                                <img src="http://163.29.39.183/uploads/images/medium/15067337-89f2-4232-99ed-9007c26f7a64.jpg" alt="..." width="200px" id="picLink">
-                            </div>
-                            <div class="col-sm-1 col-md-1">
-                                <div class="text-right">名字：</div>
-                                <div class="text-right">性別：</div>
-                                <div class="text-right">品種：</div>
-                                <div class="text-right">體型：</div>
-                                <div class="text-right">年紀：</div>
-                                <div class="text-right">節育：</div>
-                                <div class="text-right">毛色：</div>
-                            </div>
-                            <div class="col-sm-2 col-md-2" style="border-right: 1px solid #ccc;">
-                                可魯<br>
-                                雄<br>
-                                米克斯<br>
-                                大<br>
-                                老年<br>
-                                是<br>
-                                黑<br>
-                            </div>
-                            <div class="col-sm-1 col-md-1">
-                                理由：<br>
-                                備註：<br>
-                            </div>
-                            <div class="col-sm-5 col-md-5">
-                                民眾不擬馴養<br>
-                                白內障  耳疥蟲  耳炎
-                                我是Cash
-                                我的年紀大了
-                                身體機能都在退化
-                                耳朵已經聽不太到
-                                視力也有很大的影響
-                                可是我很乖很溫馴
-                                不會亂叫不會吵鬧
-                                希望你們可以給我一個機會
-                                讓我能再次擁有家的溫暖及安全感<br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-6">
-                    <div class="thumbnail anicard">
-                        <div class="row">
-                            <div class="col-sm-3 col-md-3" style="border-right: 1px solid #ccc;">
-                                <img src="http://163.29.39.183/uploads/images/medium/15067337-89f2-4232-99ed-9007c26f7a64.jpg" alt="..." width="200px" id="picLink">
-                            </div>
-                            <div class="col-sm-9 col-md-9">
-                                <dl class="dl-horizontal">
-                                    <dt>名字：</dt>
-                                    <dd>可魯</dd>
-                                    <dt>性別：</dt>
-                                    <dd>雄</dd>
-                                    <dt>品種：</dt>
-                                    <dd>米克斯</dd>
-                                    <dt>體型：</dt>
-                                    <dd>大</dd>
-                                    <dt>年紀：</dt>
-                                    <dd>老年</dd>
-                                    <dt>節育：</dt>
-                                    <dd>是</dd>
-                                    <dt>毛色：</dt>
-                                    <dd>黑</dd>
-                                    <dt>理由：</dt>
-                                    <dd>民眾不擬馴養</dd>
-                                    <dt>備註：</dt>
-                                    <dd>白內障  耳疥蟲  耳炎
-                                    我是Cash
-                                    我的年紀大了
-                                    身體機能都在退化
-                                    耳朵已經聽不太到
-                                    視力也有很大的影響
-                                    可是我很乖很溫馴
-                                    不會亂叫不會吵鬧
-                                    希望你們可以給我一個機會
-                                    讓我能再次擁有家的溫暖及安全感</dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <div class="thumbnail anicard">
-                        <div class="row">
-                            <div class="col-sm-3 col-md-3" style="border-right: 1px solid #ccc;">
-                                <img src="http://163.29.39.183/uploads/images/medium/15067337-89f2-4232-99ed-9007c26f7a64.jpg" alt="..." width="200px" id="picLink">
-                            </div>
-                            <div class="col-sm-9 col-md-9">
-                                <dl class="dl-horizontal">
-                                    <dt>名字：</dt>
-                                    <dd>可魯</dd>
-                                    <dt>性別：</dt>
-                                    <dd>雄</dd>
-                                    <dt>品種：</dt>
-                                    <dd>米克斯</dd>
-                                    <dt>體型：</dt>
-                                    <dd>大</dd>
-                                    <dt>年紀：</dt>
-                                    <dd>老年</dd>
-                                    <dt>節育：</dt>
-                                    <dd>是</dd>
-                                    <dt>毛色：</dt>
-                                    <dd>黑</dd>
-                                    <dt>理由：</dt>
-                                    <dd>民眾不擬馴養</dd>
-                                    <dt>備註：</dt>
-                                    <dd>白內障  耳疥蟲  耳炎
-                                    我是Cash
-                                    我的年紀大了
-                                    身體機能都在退化
-                                    耳朵已經聽不太到
-                                    視力也有很大的影響
-                                    可是我很乖很溫馴
-                                    不會亂叫不會吵鬧
-                                    希望你們可以給我一個機會
-                                    讓我能再次擁有家的溫暖及安全感</dd>
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </body>
 </html>
