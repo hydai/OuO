@@ -133,7 +133,25 @@ body {
     margin-bottom: 0;
     text-align: left;
 }
-
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  bottom: 0;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  padding: 12px;
+}
     </style>
 </head>
 
@@ -155,19 +173,7 @@ body {
                         <ul class="nav navbar-nav">
                             <li><a href="/">Home</a></li>
                             <li><a href="/gallery">Gallery</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li class="dropdown-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="http://data.taipei/">Taipei Open Data</a></li>
                             <li>
                                 {% if user.is_authenticated %}
                                 <a href="{% url 'logout' %}?next={{ request.path }}">登出</a> {% else %}
@@ -181,8 +187,8 @@ body {
     </div>
     {% block body_block %} {% endblock %} {% block footer_block %}
     <!-- FOOTER -->
-    <div class="container">
-        <footer>
+    <div class="fluid-container">
+        <footer class="footer">
             <p class="pull-right"><a href="#">Back to top</a></p>
             <p>&copy; 2015 OuO, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
