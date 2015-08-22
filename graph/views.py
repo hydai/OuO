@@ -35,7 +35,7 @@ def create(request, tid):
                 mapping = Mapping.objects.create(field=field, onto=onto)
                 graph.mappings.add(mapping)
                 graph.save()
-                return HttpResponseRedirect('/graph/result/%d' % graph.id)
+            return HttpResponseRedirect('/graph/result/%d' % graph.id)
 
     return render(request, 'create_graph.html', {'form': form, 'fields': fields})
 
