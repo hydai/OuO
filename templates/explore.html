@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load bootstrap %} {% block title_block%}
+<title>Explore Graph | OuO</title>
+{% endblock %} {% block body_block %}
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="fluid-container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <table class="table table-hover">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Contributor</th>
+            </tr>
+            {% for graph in graphs %}
+            <tr>
+              <td><a href="/graph/result/{{ graph.id }}">{{ graph.gname }}</a></td>
+              <td>{{ graph.description }}</td>
+              <td>{{ graph.owner }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<!-- /.container -->
+<hr> {% endblock %}

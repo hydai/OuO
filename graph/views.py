@@ -10,6 +10,15 @@ def gallery(request):
     return render(request, 'graph.html', {'templates': templates})
 
 
+def explore(request, tid=None):
+    if tid:
+        template = get_object_or_404(Template, id=tid)
+        graphs = Graph.objects.filter(template=template)
+    else:
+        graphs = Graph.objects.all()
+    return render(request, 'explore.html', {'graphs': graphs})
+
+
 def create(request, tid):
     template = get_object_or_404(Template, id=tid)
     fields = template.fields.all()
