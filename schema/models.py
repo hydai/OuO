@@ -38,8 +38,8 @@ class Template(models.Model):
     owner = models.ForeignKey(Member)
     description = models.TextField(blank=True)
     sample = models.TextField(blank=True)
-    # javascrip describe that template
-    js_src = models.FileField(upload_to='upload_js')
+    # html describe that template
+    html_src = models.TextField(blank=True)
     thumbnail_src = models.FileField(upload_to='upload_img')
     # Store the struct of the template
     fields = models.ManyToManyField(Field, blank=True, null=True)
