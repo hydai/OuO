@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from schema.models import Template, Mapping, Member, Graph
 from forms import CreateForm
 import json
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 
 def gallery(request):
@@ -37,8 +37,9 @@ def mapping_json(request, gid):
     json_arr = json.loads(graph.data_src)
     for i in range(len(json_arr)):
         for mapping in graph.mappings.all():
-            json_arr[i][mapping.field.fname] = json_arr[i][mapping.onto]
-            del json_arr[i][mapping.onto]
+            if mapping.field.fname != mapping.onto:
+                json_arr[i][mapping.field.fname] = json_arr[i][mapping.onto]
+                del json_arr[i][mapping.onto]
     return json.dumps(json_arr)
 
 
