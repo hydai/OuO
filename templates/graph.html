@@ -13,14 +13,14 @@
       {% for template in templates %}
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <img src="{{template.thumbnail_src.url}}" alt="...">
+          <img src="{{ template.thumbnail_src.url }}" alt="...">
           <div class="caption">
             <center>
               <h3>{{ template.tname }}</h3>
             </center>
             <p style="word-wrap:break-word;">{{ template.description }}</p>
             <center>
-              <p><a href="#" class="btn btn-primary" role="button">Button</a></p>
+              <p><a href="/graph/create/{{ template.id }}" class="btn btn-primary" role="button">Create</a></p>
             </center>
           </div>
         </div>
