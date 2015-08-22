@@ -50,15 +50,18 @@ $(function(){
 
       {{ form|bootstrap_horizontal:"col-lg-2" }}
 
-
-      {% for field in fields %}
-      <div class="form-group col-lg-3" style="padding:30px">
-        <label for="{{ field.fname }}">{{ field.fname }}:</label>
-        <select class="form-control" id="{{ field.fname }}" name="{{ field.fname }}">
-        </select>
+      <div class="col-lg-12">
+        {% for field in fields %}
+        <div class="form-group col-lg-3" style="padding:30px">
+          <label for="{{ field.fname }}">{{ field.fname }}:</label>
+          <select class="form-control" id="{{ field.fname }}" name="{{ field.fname }}">
+          </select>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-      <button type="submit" name="userlevel_form" class="btn btn-primary">Submit</button>
+      <div class="col-lg-offset-11">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
   </div>
 </div>
