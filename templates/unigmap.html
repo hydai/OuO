@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMaps.js &mdash; Markers</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0/src/markerclusterer.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.19/gmaps.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<style type="text/css">
+body{
+  font-family: 'Droid Sans', 'Helvetica', Arial, sans-serif;
+  margin:5px;
+}
+#map{
+  display: block;
+  width: 95%;
+  height: 350px;
+  margin: 0 auto;
+  -moz-box-shadow: 0px 5px 20px #ccc;
+  -webkit-box-shadow: 0px 5px 20px #ccc;
+  box-shadow: 0px 5px 20px #ccc;
+}
+
+#choice {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+#choice label {
+    padding-right: 7px;
+    padding-left: 2px;
+}
+.squaredOne {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    cursor: pointer;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    &:after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: $activeColor;
+      background: linear-gradient(top, $activeColor 0%, $darkenColor 100%);
+      box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+      opacity: 0;
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var map, places;
+  places = [
+      {
+        "_id": "1",
+        "ADDRESS_CODE": "06643910207766294480",
+        "L1_CODE": "06",
+        "L1_NAME": "社會救助",
+        "ORG_TYPE": "03",
+        "ORG_GROUP_NAME": "平價住宅",
+        "ORG_NAME": "延吉平宅",
+        "DIVISION": "大安區",
+        "PERSON_IN_CHARGE": "",
+        "CONTACT_NAME": "",
+        "ZONE_CODE": "10694",
+        "CITY": "臺北市",
+        "ADDRESS": "臺北市10694延吉街236巷17號",
+        "PHONE": "2704-7665",
+        "FAX": "2705-4358",
+        "WEB_HOMEPAGE": "",
+        "ORG_INTRODUCTION": "服務對象:3口以上低收入戶居住坪數:12坪",
+        "REGISTERED": "",
+        "CREATE_DATE": "",
+        "PROP_TITLE": "",
+        "PROP": "",
+        "BEDNO_TITLE": "",
+        "BEDNO": "",
+        "LAT": "25.0361296",
+        "LON": "121.5550152",
+        "DEPT_NAME": "",
+        "POST_DATE": "2015/2/24 上午 12:00:00"
+      },
+      {
+        "_id": "2",
+        "ADDRESS_CODE": "06643978776186704636",
+        "L1_CODE": "06",
+        "L1_NAME": "社會救助",
+        "ORG_TYPE": "03",
+        "ORG_GROUP_NAME": "平價住宅",
+        "ORG_NAME": "福民平宅",
+        "DIVISION": "萬華區",
+        "PERSON_IN_CHARGE": "",
+        "CONTACT_NAME": "",
+        "ZONE_CODE": "10859",
+        "CITY": "臺北市",
+        "ADDRESS": "臺北市10859西園路二段320巷57號",
+        "PHONE": "2303-6783",
+        "FAX": "2332-4771",
+        "WEB_HOMEPAGE": "",
+        "ORG_INTRODUCTION": "服務對象:3口以上低收入戶居住坪數:12~14坪",
+        "REGISTERED": "",
+        "CREATE_DATE": "",
+        "PROP_TITLE": "",
+        "PROP": "",
+        "BEDNO_TITLE": "",
+        "BEDNO": "",
+        "LAT": "25.0276325",
+        "LON": "121.4911488",
+        "DEPT_NAME": "",
+        "POST_DATE": "2015/2/24 上午 12:00:00"
+      },
+      {
+        "_id": "3",
+        "ADDRESS_CODE": "06643994160097837449",
+        "L1_CODE": "06",
+        "L1_NAME": "社會救助",
+        "ORG_TYPE": "03",
+        "ORG_GROUP_NAME": "平價住宅",
+        "ORG_NAME": "安康平宅",
+        "DIVISION": "文山區",
+        "PERSON_IN_CHARGE": "",
+        "CONTACT_NAME": "",
+        "ZONE_CODE": "11646",
+        "CITY": "臺北市",
+        "ADDRESS": "臺北市11646興隆路四段103號3樓",
+        "PHONE": "2939-0404 ，2939-5350",
+        "FAX": "2936-2395",
+        "WEB_HOMEPAGE": "",
+        "ORG_INTRODUCTION": "服務對象:3口以上低收入戶居住坪數:12~14坪",
+        "REGISTERED": "",
+        "CREATE_DATE": "",
+        "PROP_TITLE": "",
+        "PROP": "",
+        "BEDNO_TITLE": "",
+        "BEDNO": "",
+        "LAT": "24.9876804",
+        "LON": "121.5606095",
+        "DEPT_NAME": "",
+        "POST_DATE": "2015/2/24 上午 12:00:00"
+      }
+    ];
+
+  map = new GMaps({
+    el: '#map',
+    lat: places[0]['lat'],
+    lng: places[0]['lng'],
+    markerClusterer: function(map) {
+      return new MarkerClusterer(map);
+    }
+  });
+
+  content_keys = Object.keys(places[0]);
+
+  for (var i = 0, key; key = content_keys[i]; i++) {
+    $('#choice').append('<input type="checkbox" id="' + key + '"/>');
+    $('#choice').append('<label for="' + key + '">' + key + '</label>');
+  }
+
+  $('input[type=checkbox]').change(function() {
+    map.removeMarkers();
+    add_markers();
+  });
+
+  function add_markers() {
+    for (var i = 0, place; place = places[i]; i++) {
+      var marker = {
+        lat: place.lat,
+        lng: place.lng,
+        infoWindow: {
+          content: filter(place)
+        }
+      };
+      map.addMarker(marker);
+    };
+  }
+
+  function filter(place) {
+    var content = '';
+    for (var i = 0, key; key = content_keys[i]; i++) {
+      content += (document.getElementById(key).checked) ? key + ': ' + place[key] + '<br>' : '';
+    };
+    return '<h1>' + place[content_keys[0]] + '</h1><br>' + content;
+  }
+
+  add_markers();
+});
+</script>
+
+</head>
+<body>
+  <h1>地圖檢視</h1>
+  <div class="row">
+    <div class="span11">
+      <div id="map"></div>
+      <div id="choice"></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<div id="fb-root"></div><script>(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.3";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script><div class="fb-post" data-href="https://www.facebook.com/netwargame/posts/886101574772027:0" data-width="500"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/netwargame/posts/886101574772027:0"><p>&#x4e3b;&#x984c;&#xff1a;Camera360&#x300c;&#x76f8;&#x6a5f;360&#x300d;&#x88ab;&#x8e22;&#x7206;&#x5b58;&#x5728;&#x5b89;&#x5168;&#x6f0f;&#x6d1e;&#xff0c;&#x53ef;&#x672a;&#x7d93;&#x6388;&#x6b0a;&#x5b58;&#x53d6;&#x4ed6;&#x4eba;&#x7167;&#x7247;&#x8aaa;&#x660e;&#xff1a;FireEye &#x7684;&#x7814;&#x7a76;&#x5718;&#x968a;&#x767c;&#x73fe; SSL &#x5354;&#x5b9a;&#x7684;&#x6f0f;&#x6d1e;&#x88ab;&#x5927;&#x91cf;&#x4f7f;&#x7528;&#x5728; Camera360&#x300c;&#x76f8;&#x6a5f;360&#x300d;APP&#x548c;&#x5176;&#x4ed6;&#x61c9;&#x7528;&#x7a0b;&#x5e8f;&#x4e2d;&#x3002;&#x9019;&#x4e9b;&#x6f0f;&#x6d1e;&#x53ef;&#x900f;&#x904e;&#x4f7f;&#x7528;&#x4e2d;&#x9593;&#x4eba;&#x653b;&#x64ca;...</p>Posted by <a href="https://www.facebook.com/netwargame">網路攻防戰</a> on&nbsp;<a href="https://www.facebook.com/netwargame/posts/886101574772027:0">2015年8月22日</a></blockquote></div></div>
